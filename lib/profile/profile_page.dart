@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
-import 'components/button.dart';
 import 'components/profile.dart';
 import 'edit_profile_page.dart';
 
@@ -15,11 +14,14 @@ class ProfilePage extends StatefulWidget {
 class ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    const user = User(name: 'John Doe', email: 'john@gmail.com');
+    const user = User(
+        name: 'John Doe',
+        email: 'john@gmail.com');
 
     return Builder(
       builder: (context) => Scaffold(
         body: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 32),
           physics: const BouncingScrollPhysics(),
           children: [
             ProfileWidget(
@@ -33,8 +35,8 @@ class ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 24),
             buildName(user),
             const SizedBox(height: 24),
-            Center(child: buildUpgradeButton()),
-            const SizedBox(height: 48),
+            buildPersonalInfo(user),
+            const SizedBox(height: 10),
             buildAbout(user),
           ],
         ),
@@ -56,24 +58,57 @@ class ProfilePageState extends State<ProfilePage> {
         ],
       );
 
-  Widget buildUpgradeButton() => ButtonWidget(
-        text: 'hehehe',
-        onClicked: () {},
-      );
+  Widget buildPersonalInfo(User user) => Container(
+      padding: const EdgeInsets.symmetric(horizontal: 48),
+      child:  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Gender: ${user.gender}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'Country: ${user.country}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'City: ${user.city}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'Birthday: ${user.dateOfBirth}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'Registration date: ${user.dateOfRegistration}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'Favorite cafes: ${user.favoriteCafesCount}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+          Text(
+            'Favorite food: ${user.favoriteFood}',
+            style: const TextStyle(fontSize: 16, height: 1.4),
+          ),
+        ],
+
+      ),
+  );
 
   Widget buildAbout(User user) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 48),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'About',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
-              'ssssss',
-              style: TextStyle(fontSize: 16, height: 1.4),
+              user.bio,
+              style: const TextStyle(fontSize: 16, height: 1.4),
             ),
           ],
         ),
