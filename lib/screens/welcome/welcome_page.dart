@@ -1,8 +1,7 @@
-import 'package:cafetopia_flutter/screens/authentication/sign_in_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../create_route.dart';
-import '../authentication/sign_up_page.dart';
+import '../authentication/authentication_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key, required this.title});
@@ -64,7 +63,11 @@ _title(title) {
 _signUpButton(context) {
   return OutlinedButton(
     onPressed: () {
-      Navigator.push(context, createRouteWithTransition(const SignUpPage(), rtlTransition()));
+      Navigator.push(
+          context,
+          createRouteWithTransition(
+              const AuthenticationPage(mode: AuthMode.signUp),
+              rtlTransition()));
     },
     style: OutlinedButton.styleFrom(
       foregroundColor: Colors.brown,
@@ -80,7 +83,11 @@ _signInButton(context) {
   return ElevatedButton(
     onPressed: () {
       // navigate to sign in page and do animation before that
-      Navigator.push(context, createRouteWithTransition(const SignInPage(), rtlTransition()));
+      Navigator.push(
+          context,
+          createRouteWithTransition(
+              const AuthenticationPage(mode: AuthMode.signIn),
+              rtlTransition()));
     },
     style: ElevatedButton.styleFrom(
       backgroundColor: Colors.brown.shade500,
