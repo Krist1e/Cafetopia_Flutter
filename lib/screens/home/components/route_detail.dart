@@ -15,7 +15,13 @@ class RouteDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (canPop) {
+        Navigator.push(context, const MainPage() as Route<Object?>);
+        selectCard(null);
+      },
+      child: Scaffold(
       body: Column(
         children: <Widget>[
           const SizedBox(height: 8),
@@ -31,6 +37,7 @@ class RouteDetailView extends StatelessWidget {
           ),
           Expanded(child: CafeDetailTile(cafe: cafe)),
         ],
+      ),
       ),
     );
   }
