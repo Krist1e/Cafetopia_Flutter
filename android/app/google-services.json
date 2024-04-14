@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554572323808",
+    "project_id": "cafetopia-1",
+    "storage_bucket": "cafetopia-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554572323808:android:16c8c3a4c8849ff7a76985",
+        "android_client_info": {
+          "package_name": "by.bsuir.cafetopia_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqGOCqANIBB14dUyqAJ3ij6lWFOE_16-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
