@@ -1,12 +1,11 @@
-import 'package:cafetopia_flutter/screens/home/components/star_button.dart';
+import 'package:cafetopia_flutter/service_locator/service_locator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/cafe.dart';
+import '../../../service/cafe_service.dart';
 
-class CafeDetailTile extends StatelessWidget {
-  const CafeDetailTile({super.key,
-    required this.cafe
-  });
+class CafeDetail extends StatelessWidget {
+  const CafeDetail({super.key, required this.cafe});
 
   final Cafe cafe;
 
@@ -45,7 +44,7 @@ class CafeDetailTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          cafe.title,
+                          cafe.name,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 7),
@@ -60,15 +59,22 @@ class CafeDetailTile extends StatelessWidget {
                       color: Color.fromARGB(255, 245, 241, 248),
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
-                    child:
-                    // star button for adding cafe to favorites
-                    const StarButton(),
+                    child: IconButton(
+                      icon: Icon(
+                          cafe.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.redAccent),
+                      onPressed: () {
+                        locator<CafeService>().toggleFavorite(cafe);
+                      },
+                    ),
                   ),
-
                 ],
               ),
               const SizedBox(height: 15),
-              Text(cafe.description, style: Theme.of(context).textTheme.bodySmall),
+              Text(cafe.description,
+                  style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 9),
               // Carousel of cafe images
               SizedBox(
@@ -83,7 +89,7 @@ class CafeDetailTile extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(10)),
+                              const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                             image: AssetImage(cafe.images[index]),
                             fit: BoxFit.cover,

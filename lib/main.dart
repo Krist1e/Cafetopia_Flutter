@@ -14,7 +14,7 @@ Future<void> main() async {
   setupDependencies();
   runApp(
     StreamProvider(
-      create: (context) => locator<AuthenticationService>().userId,
+      create: (context) => locator<AuthenticationService>().userIdStream,
       initialData: null,
       child: const CafetopiaApp(),
     ),

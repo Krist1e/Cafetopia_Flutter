@@ -4,17 +4,10 @@ import '../models/user.dart';
 import 'components/profile.dart';
 import 'components/text_field.dart';
 
-class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({super.key, required this.user});
 
-  @override
-  EditProfilePageState createState() => EditProfilePageState();
-}
-
-class EditProfilePageState extends State<EditProfilePage> {
-  User user = const User(
-      name: 'John Doe',
-      email: 'john@gmail.com');
+  final User user;
 
   @override
   Widget build(BuildContext context) => Builder(

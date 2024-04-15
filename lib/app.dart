@@ -1,4 +1,4 @@
-import 'package:cafetopia_flutter/screens/home/main_page.dart';
+import 'package:cafetopia_flutter/screens/main_page.dart';
 import 'package:cafetopia_flutter/screens/welcome/welcome_page.dart';
 import 'package:cafetopia_flutter/service/authentication_service.dart';
 import 'package:cafetopia_flutter/service_locator/service_locator.dart';
@@ -17,7 +17,7 @@ class CafetopiaApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: StreamBuilder(
-        stream: locator<AuthenticationService>().userId,
+        stream: locator<AuthenticationService>().userIdStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.data == null) {

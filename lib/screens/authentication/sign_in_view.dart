@@ -47,10 +47,14 @@ class _SignInViewState extends State<SignInView> {
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
-            locator<AuthenticationService>().signIn(
+            locator<AuthenticationService>()
+                .signIn(
               _usernameController.text,
               _passwordController.text,
-            );
+            )
+                .then((value) {
+              Navigator.of(context).pop();
+            });
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),

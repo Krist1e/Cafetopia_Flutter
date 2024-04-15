@@ -79,8 +79,10 @@ class _SignUpViewState extends State<SignUpView> {
   _signUpButton() {
     return ElevatedButton(
       onPressed: () {
-        locator<AuthenticationService>().signUp(_emailController.text,
-            _usernameController.text, _passwordController.text);
+        locator<AuthenticationService>()
+            .signUp(_emailController.text, _usernameController.text,
+                _passwordController.text)
+            .then((value) => Navigator.of(context).pop());
       },
       style: ElevatedButton.styleFrom(
         shape: const StadiumBorder(),
