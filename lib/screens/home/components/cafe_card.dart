@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/cafe.dart';
@@ -32,15 +33,21 @@ class CafeCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 150,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        // cached network image to load image from url
-        image: DecorationImage(
-          image: NetworkImage(cafe.image),
-          fit: BoxFit.cover,
+      child: CachedNetworkImage(
+        imageUrl: cafe.image,
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-        color: Colors.grey,
-      ),
+        placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      )
     );
   }
 
