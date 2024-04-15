@@ -1,8 +1,9 @@
-import 'package:cafetopia_flutter/profile/components/user_profile_view.dart';
 import 'package:cafetopia_flutter/service/authentication_service.dart';
 import 'package:cafetopia_flutter/service/user_service.dart';
 import 'package:cafetopia_flutter/service_locator/service_locator.dart';
 import 'package:flutter/material.dart';
+
+import 'components/user_profile_view.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

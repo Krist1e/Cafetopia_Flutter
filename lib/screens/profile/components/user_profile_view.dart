@@ -1,8 +1,8 @@
 import 'package:cafetopia_flutter/service_locator/service_locator.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/user.dart';
-import '../../service/authentication_service.dart';
+import '../../../models/user.dart';
+import '../../../service/authentication_service.dart';
 import 'profile.dart';
 import '../edit_profile_page.dart';
 
@@ -35,17 +35,20 @@ class UserProfileView extends StatelessWidget {
             const SizedBox(height: 10),
             buildAbout(user),
             // sign out button
-            ElevatedButton(
-              onPressed: () {
-                locator<AuthenticationService>().signOut();
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  locator<AuthenticationService>().signOut();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  minimumSize: const Size.fromHeight(50),
                 ),
-                minimumSize: const Size.fromHeight(50),
+                child: const Text('Sign out'),
               ),
-              child: const Text('Sign out'),
             ),
           ],
         ),

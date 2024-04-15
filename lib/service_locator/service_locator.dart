@@ -4,6 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
+import '../service/implementations/firebase_authentication_service.dart';
+import '../service/implementations/firestore_cafe_service.dart';
+import '../service/implementations/firestore_user_service.dart';
 import '../service/user_service.dart';
 
 final locator = GetIt.I;

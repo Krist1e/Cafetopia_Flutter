@@ -1,4 +1,4 @@
-import 'package:cafetopia_flutter/profile/profile_page.dart';
+import 'package:cafetopia_flutter/screens/profile/profile_page.dart';
 import 'package:cafetopia_flutter/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 
