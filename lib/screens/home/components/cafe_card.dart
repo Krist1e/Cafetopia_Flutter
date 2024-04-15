@@ -32,8 +32,13 @@ class CafeCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 150,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        // cached network image to load image from url
+        image: DecorationImage(
+          image: NetworkImage(cafe.image),
+          fit: BoxFit.cover,
+        ),
         color: Colors.grey,
       ),
     );
@@ -56,13 +61,19 @@ class CafeCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    cafe.address,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    textAlign: TextAlign.left,
+                    'Address: ${cafe.address.length > 30
+                        ? '${cafe.address.substring(0, 30)}...'
+                        : cafe.address}',
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    cafe.tags.join(', '),
-                    style: Theme.of(context).textTheme.bodySmall,
+                  Wrap(
+                    children: // show only 3 tags
+                    List.generate(
+                      cafe.tags.length > 2 ? 2 : cafe.tags.length,
+                          (index) => TagCard(tag: cafe.tags[index]),
+                    ),
                   ),
                 ],
               ),
@@ -76,6 +87,34 @@ class CafeCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+// create card for tags
+class TagCard extends StatelessWidget {
+  const TagCard({
+    super.key,
+    required this.tag,
+  });
+
+  final String tag;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      // round the corners
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      // background color
+      color: Colors.amber[100],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(// if tag length is more than 10, show only 10 characters
+            tag.length > 15 ? '${tag.substring(0, 15)}...' : tag
+     , style: Theme.of(context).textTheme.labelSmall),
       ),
     );
   }
