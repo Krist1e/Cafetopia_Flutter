@@ -88,12 +88,10 @@ class FirestoreCafeService implements CafeService {
     }
     var userRef = firestore.collection('users').doc(userId);
     var favoriteRef = userRef.collection('favorites').doc(cafe.id);
-    return favoriteRef.get().then((doc) {
-      if (doc.exists) {
-        return favoriteRef.delete();
-      } else {
-        return favoriteRef.set({});
-      }
-    });
+    if (cafe.isFavorite) {
+      return favoriteRef.delete();
+    } else {
+      return favoriteRef.set({});
+    }
   }
 }

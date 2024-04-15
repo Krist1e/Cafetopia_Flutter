@@ -10,13 +10,18 @@ class AuthenticationPage extends StatefulWidget {
   final AuthMode mode;
 
   @override
-  State<AuthenticationPage> createState() => _AuthenticationPageState(mode: mode);
+  State<AuthenticationPage> createState() => _AuthenticationPageState();
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
   AuthMode mode = AuthMode.signUp;
 
-  _AuthenticationPageState({required this.mode});
+  @override
+  void initState() {
+    super.initState();
+
+    mode = widget.mode;
+  }
 
   void toggleMode() {
     setState(() {
@@ -44,9 +49,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                   const SizedBox(height: 20),
                 ],
               ),
-              mode == AuthMode.signUp
-                  ? const SignUpView()
-                  : const SignInView(),
+              mode == AuthMode.signUp ? const SignUpView() : const SignInView(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

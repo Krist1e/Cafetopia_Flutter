@@ -28,7 +28,7 @@ class FirestoreUserService implements UserService {
     return await firestore.collection('users').doc(id).set({
       'name': name,
       'email': email,
-      'dateOfRegistration': DateTime.now().toIso8601String(),
+      'dateOfRegistration': Timestamp.fromDate(DateTime.now()),
     });
   }
 
@@ -41,9 +41,6 @@ class FirestoreUserService implements UserService {
         required String city,
         required String bio,
         required String favoriteFood}) async {
-    print('updateProfile');
-    print('id: $id');
-    print('name: $name');
     return await firestore.collection('users').doc(id).update({
       'name': name,
       'gender': gender,

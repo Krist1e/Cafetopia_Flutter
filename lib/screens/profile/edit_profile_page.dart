@@ -125,8 +125,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       city: city,
                       bio: bio,
                       favoriteFood: favoriteFood)
-                  .then((value) => Navigator.of(context).pop())
-                  .onError((error, stackTrace) => print(error));
+                  .then((value) => Navigator.of(context).pop());
             },
             backgroundColor: Colors.brown,
             child: const Icon(Icons.save, color: Colors.white),
